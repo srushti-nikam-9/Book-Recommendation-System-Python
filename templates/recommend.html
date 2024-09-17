@@ -98,22 +98,30 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <h1>Top 50 Books</h1>
+            <h1>Recommend Books</h1>
+            <form action="/recommend_books" method="post">
+                <input name="user_input" type="text" class="form-control"><br>
+                <input type="submit" class="btn btn-warning">
+            </form>
         </div>
 
-        {% for i in range(book_name|length) %}
-        <div class="col-md-3" style="margin-top: 30px">
-            <div class="card">
-                <img class="card-img-top" src="{{ image[i] }}" alt="Book Image">
-                <div class="card-body">
-                    <p>{{ book_name[i] }}</p>
-                    <h4>{{ author[i] }}</h4>
-                    <h4>Votes - {{ votes[i] }}</h4>
-                    <h4>Rating - {{ rating[i]|round(1) }}</h4>
+        {% if data %}
+            {% for i in data %}
+                <div class="col-md-3" style="margin-top: 30px">
+                    <div class="card">
+                        <img class="card-img-top" src="{{ i[2] }}" alt="Book Image">
+                        <div class="card-body">
+                            <p>{{ i[0] }}</p>
+                            <h4>{{ i[1] }}</h4>
+                        </div>
+                    </div>
                 </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-md-12">
+                <h3 class="text-center">{{ message }}</h3>
             </div>
-        </div>
-        {% endfor %}
+        {% endif %}
 
     </div>
 </div>
