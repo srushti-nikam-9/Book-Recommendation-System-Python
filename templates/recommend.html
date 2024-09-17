@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book Recommender System</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f4f4f4; /* Light grey background */
+            color: #333; /* Dark text color */
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #343a40; /* Dark grey background */
+        }
+        .navbar-brand, .navbar-nav > li > a {
+            color: #ffffff; /* White text color */
+        }
+        .navbar-brand {
+            font-size: 24px;
+        }
+        .navbar-nav > li > a {
+            font-size: 18px;
+        }
+        .card {
+            border: none; /* No border for cleaner look */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2); /* Enhanced shadow */
+            margin-bottom: 30px;
+            height: 550px; /* Increased height for better text fit */
+            background-color: #ffffff; /* White background for cards */
+            display: flex;
+            flex-direction: column;
+        }
+        .card-img-top {
+            width: 100%;
+            height: 300px; /* Increased height for image */
+            object-fit: contain; /* Maintain image aspect ratio */
+        }
+        .card-body {
+            padding: 20px;
+            text-align: center;
+            flex-grow: 1; /* Ensure card body grows to fill space */
+            overflow: hidden; /* Prevent overflow of text */
+        }
+        .card-body p {
+            font-size: 22px; /* Larger font size for book title */
+            font-weight: bold; /* Bold text for book title */
+            color: #333; /* Dark color for text */
+            margin-bottom: 10px;
+            white-space: normal; /* Allow text to wrap */
+            overflow: hidden; /* Hide overflow text */
+            text-overflow: clip; /* Clip overflow text */
+            display: -webkit-box; /* Flexbox for multi-line text */
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2; /* Limit to 2 lines */
+        }
+        .card-body h4 {
+            font-size: 18px; /* Slightly larger font size for other details */
+            color: #555; /* Medium grey color for details */
+            margin: 5px 0;
+        }
+        h1 {
+            font-size: 50px;
+            color: #343a40; /* Dark grey color */
+            margin-bottom: 30px;
+        }
+        .form-control {
+            border-radius: 4px;
+            border: 1px solid #343a40; /* Dark grey border */
+        }
+        .btn-warning {
+            background-color: #343a40; /* Dark grey background */
+            border: none;
+            color: #ffffff; /* White text */
+            border-radius: 4px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .btn-warning:hover {
+            background-color: #23272b; /* Even darker grey on hover */
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a class="navbar-brand">My Book Recommender</a>
+    <ul class="nav navbar-nav">
+        <li><a href="/">HOME</a></li>
+        <li><a href="/recommend">RECOMMEND</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Top 50 Books</h1>
+        </div>
+
+        {% for i in range(book_name|length) %}
+        <div class="col-md-3" style="margin-top: 30px">
+            <div class="card">
+                <img class="card-img-top" src="{{ image[i] }}" alt="Book Image">
+                <div class="card-body">
+                    <p>{{ book_name[i] }}</p>
+                    <h4>{{ author[i] }}</h4>
+                    <h4>Votes - {{ votes[i] }}</h4>
+                    <h4>Rating - {{ rating[i]|round(1) }}</h4>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+
+</body>
+</html>
